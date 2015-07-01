@@ -437,16 +437,21 @@
       <a href="{{ url|safe }}">{{ url_linktext }}</a>
       <hr>
       {% for greeting in greetings %}
-        {% if greeting.author %}
-          <b>{{ greeting.author.email }}
-            {% if user and user.user_id() == greeting.author.identity %}
-              (You)
-            {% endif %}
-          </b> wrote:
+        {% if greeting.content %}
+          {% if greeting.author %}
+            <b>{{ greeting.author.email }}
+              {% if user and user.user_id() == greeting.author.identity %}
+                (You)
+              {% endif %}
+            </b> wrote:
+          {% else %}
+            An anonymous person wrote:
+          {% endif %}
+          <blockquote>{{ greeting.content }}</blockquote>
         {% else %}
-         An anonymous person wrote:
+          please input a validated maeesage.
+          <br>
         {% endif %}
-        <blockquote>{{ greeting.content }}</blockquote>
       {% endfor %}  
 
         

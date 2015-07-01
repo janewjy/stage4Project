@@ -16,7 +16,6 @@
 #
 import os
 
-import cgi
 import urllib
 
 from google.appengine.api import users
@@ -31,6 +30,7 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), a
 
 
 DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
+COMMENTSNUMBER = 10
 
 # We set a parent key on the 'Greetings' to ensure that they are all
 # in the same entity group. Queries across the single entity group
@@ -71,7 +71,7 @@ class MainPage(webapp2.RequestHandler):
         # query.
         greetings_query = Greeting.query(
             ancestor=guestbook_key(guestbook_name)).order(-Greeting.date)
-        greetings = greetings_query.fetch(10)
+        greetings = greetings_query.fetch(COMMENTSNUMBER)
 
         user = users.get_current_user()
 

@@ -384,25 +384,31 @@
       <div class="concepts">
         <h3>Server</h3>
         <p>
-            Servers include both the machaine, programs and data that hots the web.
-            <br>
-            <br>
-            HTTP is the most frequenly used communication protocal on the web.
-            <br>
-            <br>
-            URL: uniform resource locator. The minimum path is represented by protpcal and server host. 
-            <br>
-            <br>
-            Query parameters are following ?.
-            <br>
-            <br>
-            GET: the most often used method for requesting a doc from the server.
-            <br>
-            <br>
-            POST: send data to the server.
-            <br>
-            <br>
-            Use nice and accurate user agnet is always a nice curtesy.          
+          To request a doc, the browser will send a request line (usually follow the HTTP) to the server: GET/url HTTP/version_info.  The request is followed by a number of headers, which  contains host and  user-agent  information.
+          <br>
+          <br>
+          After the server revieve a request, the server will response with a status line: HTTP/version_info status_code reason_phrase. The status line is also followed by a number of headers, such as date, server, content type and length. There are two main type of responses the server will do: static and dynamic. The content of static is pre-written files that the server just returns, such as images. Dynamic content is made on the fly which is very popular nowadays. Web application is on a server and generage the content based on the browser request. 
+          <br>
+          <br>
+          Servers include both the machaine, programs and data that hots the web.
+          <br>
+          <br>
+          HTTP is the most frequenly used communication protocal on the web.
+          <br>
+          <br>
+          URL: uniform resource locator. The minimum path is represented by protpcal and server host. 
+          <br>
+          <br>
+          Query parameters are following ?.
+          <br>
+          <br>
+          GET: the most often used method for requesting a doc from the server.
+          <br>
+          <br>
+          POST: send data to the server.
+          <br>
+          <br>
+          Use nice and accurate user agnet is always a nice curtesy.          
         </p>
         <h3>The importance of validating input</h3>
         <p>

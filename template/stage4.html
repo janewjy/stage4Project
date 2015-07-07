@@ -88,7 +88,7 @@
     <!-- <div class="image"><img src="/home/jingya/projects/stage4Project/template/photo.jpg" alt="Oops, cannot find the image"></div> -->
     <div class="heading-text"> <a href="https://ca.linkedin.com/pub/jingya-wang/58/a00/6b8">Jingya</a>'s class notes.</div>
   </div>
-  <div class="content">
+  <div class="contents">
     <h1>Table of Contents</h1>
     <ul class = "content-font">
       <li><a href="#lesson1.1">1.1:  Keypoints of the Basics of the Web and HTML</a></li>
@@ -442,8 +442,9 @@
 
       <a href="{{ url|safe }}">{{ url_linktext }}</a>
       <hr>
+      {{ error_msg }}
+      <br>
       {% for greeting in greetings %}
-        {% if greeting.content %}
           {% if greeting.author %}
             <b>{{ greeting.author.email }}
               {% if user and user.user_id() == greeting.author.identity %}
@@ -454,10 +455,7 @@
             An anonymous person wrote:
           {% endif %}
           <blockquote>{{ greeting.content }}</blockquote>
-        {% else %}
-          please input a validated maeesage.
           <br>
-        {% endif %}
       {% endfor %}  
 
         

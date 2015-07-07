@@ -31,6 +31,8 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), a
 
 DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
 COMMENTSNUMBER = 10
+error_msg = 'error'
+
 
 # We set a parent key on the 'Greetings' to ensure that they are all
 # in the same entity group. Queries across the single entity group
@@ -60,6 +62,7 @@ class Greeting(ndb.Model):
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+       
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
 
@@ -91,6 +94,8 @@ class MainPage(webapp2.RequestHandler):
             'guestbook_name': urllib.quote_plus(guestbook_name),
             'url': url,
             'url_linktext': url_linktext,
+            'error_msg':error_msg,
+             
         }
 
         template = jinja_env.get_template('stage4.html')
@@ -113,10 +118,17 @@ class Guestbook(webapp2.RequestHandler):
                     email=users.get_current_user().email())
 
         greeting.content = self.request.get('content')
-        greeting.put()
 
-        query_params = {'guestbook_name': guestbook_name}
+        if greeting.content  and not greeting.content.isspace():
+            greeting.put()
+            error_msg = ""
+        else:
+            error_msg = "please add a validated message"
+
+        query_params = {'guestbook_name': guestbook_name, 'error_msg':error_msg}
         self.redirect('/?' + urllib.urlencode(query_params))
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainPage),

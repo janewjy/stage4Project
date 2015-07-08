@@ -46,7 +46,9 @@
   .title{
     background-color: #009966;
   }
-
+  .error{
+    color:red
+  }
   span.code {
       font-family: Courier;
       background-color: #BBBBBB;
@@ -442,7 +444,8 @@
 
       <a href="{{ url|safe }}">{{ url_linktext }}</a>
       <hr>
-      {{ error_msg }}
+      <div class="error"> {{ error_msg }} </div>
+      <br>
       <br>
       {% for greeting in greetings %}
           {% if greeting.author %}

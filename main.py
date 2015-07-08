@@ -31,7 +31,7 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir), a
 
 DEFAULT_GUESTBOOK_NAME = 'default_guestbook'
 COMMENTSNUMBER = 10
-error_msg = 'error'
+ERROR_MSG = ''
 
 
 # We set a parent key on the 'Greetings' to ensure that they are all
@@ -65,6 +65,8 @@ class MainPage(webapp2.RequestHandler):
        
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
+        error_msg = self.request.get('error_msg',
+                                          ERROR_MSG)
 
         # Ancestor Queries, as shown here, are strongly consistent
         # with the High Replication Datastore. Queries that span
@@ -110,6 +112,8 @@ class Guestbook(webapp2.RequestHandler):
         # ~1/second.
         guestbook_name = self.request.get('guestbook_name',
                                           DEFAULT_GUESTBOOK_NAME)
+        error_msg = self.request.get('error_msg',
+                                          ERROR_MSG)
         greeting = Greeting(parent=guestbook_key(guestbook_name))
 
         if users.get_current_user():
